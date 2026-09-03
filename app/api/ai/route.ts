@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-type Tool = "reply" | "email" | "followup" | "appointment" | "summary" | "quote" | "social";
+type Tool = "reply" | "email" | "followup" | "appointment" | "summary" | "quote" | "social" | "dailyplan" | "study" | "personalnotes";
 type Tone = "professional" | "friendly" | "concise";
 
 const TOOL_INSTRUCTIONS: Record<Tool, string> = {
@@ -11,6 +11,9 @@ const TOOL_INSTRUCTIONS: Record<Tool, string> = {
   summary: "Summarize the notes into key points, decisions, and action items. Do not invent missing facts.",
   quote: "Write a polished quote or estimate note. Preserve every supplied price, date, and condition exactly.",
   social: "Write an engaging business social-media caption with a natural call to action and no more than five relevant hashtags.",
+  dailyplan: "Turn the user's tasks, deadlines and available time into a realistic prioritized daily plan. Include time blocks, short breaks and the three most important outcomes. Do not invent commitments.",
+  study: "Act as a practical study assistant. Explain or summarize the supplied material clearly, then provide key takeaways and five useful review questions.",
+  personalnotes: "Organize the supplied personal notes into a concise summary, decisions, deadlines and a clear action list. Do not invent missing information.",
 };
 
 const TONE_INSTRUCTIONS: Record<Tone, string> = {
@@ -97,7 +100,7 @@ export async function POST(request: NextRequest) {
           messages: [
             {
               role: "system",
-              content: `You are Synqo AI Employee, a practical writing assistant for small businesses. ${TOOL_INSTRUCTIONS[tool]} ${TONE_INSTRUCTIONS[tone]} Match the user's language when practical. Return only the useful finished draft. Never invent names, prices, dates, promises, or legal claims; use a clear [placeholder] if essential information is missing.`,
+              content: `You are a Synqo AI assistant. ${TOOL_INSTRUCTIONS[tool]} ${TONE_INSTRUCTIONS[tone]} Match the user's language when practical. Return only the useful finished result. Never invent names, prices, dates, promises, deadlines, or legal claims; use a clear [placeholder] if essential information is missing.`,
             },
             { role: "user", content: input },
           ],

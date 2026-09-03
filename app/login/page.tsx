@@ -10,6 +10,12 @@ import {
 
 import { auth, googleProvider } from "../lib/firebase";
 
+function loginDestination() {
+  if (typeof window === "undefined") return "/dashboard";
+  const next = new URLSearchParams(window.location.search).get("next");
+  return next?.startsWith("/") && !next.startsWith("//") ? next : "/dashboard";
+}
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -30,7 +36,7 @@ export default function LoginPage() {
     if (!user) return;
 
     if (user.emailVerified) {
-      router.replace("/dashboard");
+      router.replace(loginDestination());
     } else {
       router.replace("/verify-email");
     }
@@ -66,7 +72,7 @@ export default function LoginPage() {
         return;
       }
 
-      router.replace("/dashboard");
+      router.replace(loginDestination());
     } catch (loginError: unknown) {
       console.error("Login error:", loginError);
 
@@ -110,7 +116,7 @@ export default function LoginPage() {
         return;
       }
 
-      router.replace("/dashboard");
+      router.replace(loginDestination());
     } catch (googleError: unknown) {
       console.error("Google login error:", googleError);
 
