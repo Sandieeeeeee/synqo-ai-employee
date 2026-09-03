@@ -23,7 +23,7 @@ export default function AboutPage() {
       </motion.div>
 
       <motion.section initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:.7,delay:.12}} className="founder-panel">
-        <div className="founder-photo"><img src="/team/sandeep-sharma-founder.png?v=2" alt="Sandeep Sharma, Founder and Director of Synqo AI" width="1254" height="1254" loading="eager"/></div>
+        <div className="founder-photo"><img src="/team/sandeep-sharma-founder-v3.jpg" alt="Sandeep Sharma, Founder and Director of Synqo AI" width="1254" height="1254" loading="eager" decoding="async"/></div>
         <div className="founder-copy"><span className="section-label">FOUNDER</span><h2>Sandeep Sharma</h2><strong>Founder &amp; Director, Synqo AI</strong><p>Building Synqo AI across Canada and India with one clear goal: make powerful AI practical, affordable and useful for everyday business operations.</p><blockquote>“Technology should save people time, simplify work and help businesses grow with confidence.”</blockquote><div className="founder-tags"><span>Canada × India</span><span>AI Software</span><span>Business Automation</span></div></div>
       </motion.section>
 

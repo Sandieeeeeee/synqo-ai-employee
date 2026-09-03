@@ -275,8 +275,8 @@ export default function Home() {
             </motion.p>
 
             <motion.div variants={reveal} className="hero-actions">
-              <Link className="primary-button" href="/contact">
-                Request Early Access
+              <Link className="primary-button" href="/signup">
+                Start Free Trial
                 <ArrowRight size={18} />
               </Link>
 
@@ -613,8 +613,8 @@ export default function Home() {
                 customer communication, leads, scheduling and follow-ups.
               </p>
 
-              <Link className="primary-button" href="/contact">
-                Join Early Access
+              <Link className="primary-button" href="/signup">
+                Try AI Employee
                 <ArrowRight size={18} />
               </Link>
             </div>
@@ -715,8 +715,8 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <Link className="primary-button" href="/contact">
-              Request Early Access
+            <Link className="primary-button" href="/signup">
+              Start Free Trial
               <ArrowRight size={18} />
             </Link>
 
