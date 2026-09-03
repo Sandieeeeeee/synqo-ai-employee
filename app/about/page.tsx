@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Bot, Building2, Globe2, Lightbulb, ShieldCheck, Target, Workflow } from "lucide-react";
 import InteractiveBackground from "@/components/InteractiveBackground";
+import FounderSocialLinks from "@/components/FounderSocialLinks";
 
 const principles = [
   { icon: Target, title: "Solve Real Business Problems", description: "We focus on practical business pain points instead of adding AI where it does not create meaningful value." },
@@ -24,7 +25,7 @@ export default function AboutPage() {
 
       <motion.section initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:.7,delay:.12}} className="founder-panel">
         <div className="founder-photo"><img src="/team/sandeep-sharma-founder-v3.jpg" alt="Sandeep Sharma, Founder and Director of Synqo AI" width="1254" height="1254" loading="eager" decoding="async"/></div>
-        <div className="founder-copy"><span className="section-label">FOUNDER</span><h2>Sandeep Sharma</h2><strong>Founder &amp; Director, Synqo AI</strong><p>Building Synqo AI across Canada and India with one clear goal: make powerful AI practical, affordable and useful for everyday business operations.</p><blockquote>“Technology should save people time, simplify work and help businesses grow with confidence.”</blockquote><div className="founder-tags"><span>Canada × India</span><span>AI Software</span><span>Business Automation</span></div></div>
+        <div className="founder-copy"><span className="section-label">FOUNDER</span><h2>Sandeep Sharma</h2><strong>Founder &amp; Director, Synqo AI</strong><p>Building Synqo AI across Canada and India with one clear goal: make powerful AI practical, affordable and useful for everyday business operations.</p><blockquote>“Technology should save people time, simplify work and help businesses grow with confidence.”</blockquote><div className="founder-tags"><span>Canada × India</span><span>AI Software</span><span>Business Automation</span></div><FounderSocialLinks className="founder-social-links" /></div>
       </motion.section>
 
       <section style={{paddingTop:"100px"}}><div className="section-heading"><div><span className="section-label">WHAT WE ARE BUILDING</span><h2>Products first. Services where businesses need custom solutions.</h2></div><p>Synqo AI combines its own software products with implementation services for businesses that need tailored automation or custom systems.</p></div><div className="feature-grid">

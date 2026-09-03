@@ -19,6 +19,7 @@ import InteractiveBackground from "@/components/InteractiveBackground";
 import LoadingScreen from "@/components/LoadingScreen";
 import BackToTop from "@/components/BackToTop";
 import NeuralCore3D from "@/components/NeuralCore3D";
+import FounderSocialLinks from "@/components/FounderSocialLinks";
 
 const features = [
   {
@@ -158,6 +159,10 @@ export default function Home() {
 
             <Link href="/pricing">Pricing</Link>
 
+            <Link href="/vision">Vision</Link>
+
+            <Link href="/resources">Resources</Link>
+
             <Link href="/about">About</Link>
           </nav>
 
@@ -233,6 +238,15 @@ export default function Home() {
                 About
                 <ChevronRight size={16} className="text-blue-400" />
               </Link>
+
+              <Link
+                href="/vision"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between rounded-xl px-4 py-4 text-sm font-semibold text-slate-200 hover:bg-blue-500/10"
+              >
+                Vision
+                <ChevronRight size={16} className="text-blue-400" />
+              </Link>
             </motion.div>
           )}
         </header>
@@ -273,14 +287,14 @@ export default function Home() {
             </motion.p>
 
             <motion.div variants={reveal} className="hero-actions">
-              <Link className="primary-button" href="/signup">
-                Start Free Trial
+              <Link className="primary-button" href="/products">
+                Explore AI Employee
                 <ArrowRight size={18} />
               </Link>
 
-              <a className="secondary-button" href="#solutions">
+              <Link className="secondary-button" href="/how-it-works">
                 See How It Works
-              </a>
+              </Link>
             </motion.div>
 
             <motion.div variants={reveal} className="hero-meta">
@@ -421,8 +435,8 @@ export default function Home() {
                 customer communication, leads, scheduling and follow-ups.
               </p>
 
-              <Link className="primary-button" href="/signup">
-                Try AI Employee
+              <Link className="primary-button" href="/how-it-works">
+                See AI Employee Workflow
                 <ArrowRight size={18} />
               </Link>
             </div>
@@ -554,9 +568,17 @@ export default function Home() {
 
             <Link href="/products">AI Employee</Link>
 
+            <Link href="/life-assistant">Life Assistant</Link>
+
             <Link href="/services">Services</Link>
 
             <Link href="/pricing">Pricing</Link>
+
+            <Link href="/vision">Vision</Link>
+
+            <Link href="/how-it-works">How It Works</Link>
+
+            <Link href="/resources">Resources</Link>
 
             <Link href="/contact">Contact</Link>
 
@@ -564,6 +586,8 @@ export default function Home() {
 
             <Link href="/terms">Terms</Link>
           </div>
+
+          <FounderSocialLinks className="footer-socials" />
 
           <small>© 2026 Synqo AI. All rights reserved.</small>
         </footer>

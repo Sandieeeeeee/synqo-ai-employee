@@ -8,8 +8,12 @@ import { ArrowRight, ChevronRight, Menu, X } from "lucide-react";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
+  { name: "Life Assistant", href: "/life-assistant" },
   { name: "Services", href: "/services" },
   { name: "Pricing", href: "/pricing" },
+  { name: "Vision", href: "/vision" },
+  { name: "How It Works", href: "/how-it-works" },
+  { name: "Resources", href: "/resources" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "Feedback", href: "/feedback" },
@@ -44,7 +48,7 @@ export default function Navbar() {
       </Link>
 
       <nav className="nav-links" aria-label="Main navigation">
-        {navigation.slice(1).map((item) => (
+        {navigation.filter((item) => ["Products", "Life Assistant", "Services", "Pricing", "Vision", "Resources", "About"].includes(item.name)).map((item) => (
           <Link key={item.name} href={item.href}>
             {item.name}
           </Link>

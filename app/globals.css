@@ -991,6 +991,14 @@ footer small {
   font-size: 11px;
 }
 
+.footer-socials {
+  grid-column: 1 / -1;
+}
+
+.founder-social-links {
+  margin-top: 20px;
+}
+
 @keyframes float {
   0%,
   100% {

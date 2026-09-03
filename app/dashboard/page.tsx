@@ -102,7 +102,7 @@ export default function DashboardPage() {
       <div className={styles.brandRow}><Link className={styles.brand} href="/"><span>S</span>SYNQO <strong>AI</strong></Link><button className={styles.close} onClick={()=>setMenuOpen(false)} aria-label="Close menu"><X/></button></div>
       <div className={styles.employeeBadge}><Bot/><div><strong>AI Employee</strong><span>Online and ready</span></div></div>
       <nav className={styles.nav}>{navigation.map(({ id, label, icon: Icon, badge }) => <button key={id} className={view===id?styles.active:""} onClick={()=>chooseView(id)}><Icon/><span>{label}</span>{Boolean(badge)&&<b>{badge}</b>}</button>)}</nav>
-      <div className={styles.sideLinks}><Link href="/feedback"><MessageSquareText/>Feedback</Link><Link href="/settings"><Settings/>Settings</Link></div>
+      <div className={styles.sideLinks}><Link href="/life-assistant"><Sparkles/>Life Assistant</Link><Link href="/feedback"><MessageSquareText/>Feedback</Link><Link href="/settings"><Settings/>Settings</Link></div>
       <div className={styles.profile}><div className={styles.avatar}>{name[0]?.toUpperCase()}</div><div><strong>{user?.displayName || name}</strong><span>{user?.email}</span></div><button onClick={logout} aria-label="Sign out"><LogOut/></button></div>
     </aside>
     {menuOpen && <button className={styles.overlay} onClick={()=>setMenuOpen(false)} aria-label="Close menu"/>}

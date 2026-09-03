@@ -27,6 +27,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Synqo AI",
+              url: "https://synqoai.com",
+              logo: "https://synqoai.com/og-image.png",
+              founder: { "@type": "Person", name: "Sandeep Sharma" },
+              slogan: "Smart Synchronization Powered by AI",
+              sameAs: [
+                "https://www.instagram.com/sandeepcanadalife/",
+                "https://www.youtube.com/@sandeepcanadalife",
+                "https://www.facebook.com/sandeepcanadalife/",
+                "https://www.tiktok.com/@sandeepcanadalife",
+              ],
+            }),
+          }}
+        />
         <AuthProvider>{children}</AuthProvider>
         <BusinessAssistant />
 
