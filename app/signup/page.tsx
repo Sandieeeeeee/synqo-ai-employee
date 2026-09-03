@@ -56,6 +56,8 @@ export default function SignupPage() {
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [primaryGoal, setPrimaryGoal] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -115,6 +117,8 @@ export default function SignupPage() {
           uid: credential.user.uid,
           fullName: cleanName,
           email: cleanEmail,
+          businessName: businessName.trim(),
+          primaryGoal,
           photoURL: credential.user.photoURL ?? "",
           provider: "password",
           emailVerified: credential.user.emailVerified,
@@ -162,6 +166,8 @@ export default function SignupPage() {
           uid: user.uid,
           fullName: user.displayName ?? "",
           email: user.email ?? "",
+          businessName: businessName.trim(),
+          primaryGoal,
           photoURL: user.photoURL ?? "",
           provider: "google",
           emailVerified: user.emailVerified,
@@ -246,6 +252,32 @@ export default function SignupPage() {
               required
             />
           </label>
+
+          <div className={styles.fieldGrid}>
+            <label>
+              Business name <small>Optional</small>
+              <input
+                type="text"
+                value={businessName}
+                onChange={(event) => setBusinessName(event.target.value)}
+                placeholder="Your business"
+                autoComplete="organization"
+                disabled={busy}
+              />
+            </label>
+
+            <label>
+              Main goal <small>Optional</small>
+              <select value={primaryGoal} onChange={(event) => setPrimaryGoal(event.target.value)} disabled={busy}>
+                <option value="">Choose a goal</option>
+                <option>Customer replies</option>
+                <option>Lead follow-ups</option>
+                <option>Appointments</option>
+                <option>Business email</option>
+                <option>Organize daily work</option>
+              </select>
+            </label>
+          </div>
 
           <label>
             Password

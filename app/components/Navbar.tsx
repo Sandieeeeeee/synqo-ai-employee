@@ -12,6 +12,7 @@ const navigation = [
   { name: "Pricing", href: "/pricing" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "Feedback", href: "/feedback" },
 ];
 
 export default function Navbar() {
@@ -50,8 +51,8 @@ export default function Navbar() {
         ))}
       </nav>
 
-      <Link className="nav-button hidden sm:inline-flex" href="/contact">
-        Get Started
+      <Link className="nav-button hidden sm:inline-flex" href="/signup">
+        Start Free
         <ArrowRight size={17} />
       </Link>
 
@@ -87,11 +88,11 @@ export default function Navbar() {
             ))}
 
             <Link
-              href="/contact"
+              href="/signup"
               onClick={closeMenu}
               className="primary-button mt-3 w-full"
             >
-              Start a Project
+              Start Free
               <ArrowRight size={17} />
             </Link>
           </motion.div>

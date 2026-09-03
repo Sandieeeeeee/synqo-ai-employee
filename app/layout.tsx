@@ -3,6 +3,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 
 import { AuthProvider } from "./contexts/AuthContext";
+import BusinessAssistant from "./components/BusinessAssistant";
 
 import "./globals.css";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>{children}</AuthProvider>
+        <BusinessAssistant />
 
         <GoogleAnalytics gaId="G-71WW2Q58VY" />
 

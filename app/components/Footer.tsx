@@ -3,13 +3,13 @@ import Link from "next/link";
 const companyLinks = [
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
-  { name: "Careers", href: "/careers" },
+  { name: "Feedback", href: "/feedback" },
 ];
 
 const productLinks = [
-  { name: "Products", href: "/products" },
-  { name: "Synqo Reminder", href: "/products/reminder" },
-  { name: "AI Employee", href: "/products/ai-employee" },
+  { name: "AI Employee", href: "/dashboard" },
+  { name: "Features", href: "/products" },
+  { name: "Start Free", href: "/signup" },
 ];
 
 const businessLinks = [
