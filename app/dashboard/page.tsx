@@ -30,22 +30,10 @@ const prompts: Record<Tool, { title: string; placeholder: string; action: string
   social: { title: "Write a social caption", placeholder: "Describe your business update, offer or announcement…", action: "Create caption" },
 };
 function getName(user: User | null) { return user?.displayName?.trim().split(" ")[0] || user?.email?.split("@")[0] || "there"; }
-function createOutput(tool: Tool, input: string, tone: Tone) {
-  const clean = input.trim();
-  const greeting = tone === "friendly" ? "Hi there," : "Hi,";
-  if (tool === "reply") return tone === "concise" ? `Hi,\n\nThanks for reaching out about ${clean}. Please share any remaining details and we’ll help with the next step.\n\nBest,\nYour team` : `${greeting}\n\nThank you for reaching out. I understand you’re contacting us about ${clean}. We’d be happy to help. Please share any remaining details or your preferred time to connect, and we’ll take care of the next step.\n\nBest regards,\nYour team`;
-  if (tool === "email") return `Subject: Following up on your request\n\nHi,\n\nI’m reaching out regarding ${clean}. We’ve reviewed the details and would be glad to help you move forward. Please let me know a convenient time to discuss the next steps.\n\nBest regards,\nYour team`;
-  if (tool === "followup") return `Hi, just following up regarding ${clean}. I wanted to check whether you had any questions and see if you’d like to move ahead. I’m happy to help with the next step whenever you’re ready.`;
-  if (tool === "appointment") return `${greeting}\n\nThis is a confirmation for ${clean}. Please reply to confirm that the timing works for you. If you need to reschedule, share a preferred alternative and we’ll be happy to help.\n\nThank you,\nYour team`;
-  if (tool === "quote") return `Hi,\n\nThank you for the opportunity to help with ${clean}. This estimate covers the work described above. Please review the scope, pricing and timing, and let us know if you would like us to proceed or clarify anything.\n\nBest regards,\nYour team`;
-  if (tool === "social") return `${clean}\n\nWe’re excited to share this update with our community. Questions? Send us a message—we’d be happy to help.\n\n#SmallBusiness #BusinessGrowth #CustomerExperience`;
-  return `Summary\n\n${clean}\n\nRecommended next actions:\n• Confirm the key requirement\n• Assign an owner and deadline\n• Send a clear follow-up\n• Record the outcome in the workspace`;
-}
-
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null), [loading, setLoading] = useState(true), [menuOpen, setMenuOpen] = useState(false);
-  const [activeTool, setActiveTool] = useState<Tool>("reply"), [input, setInput] = useState(""), [output, setOutput] = useState(""), [generating, setGenerating] = useState(false), [copied, setCopied] = useState(false);
+  const [activeTool, setActiveTool] = useState<Tool>("reply"), [input, setInput] = useState(""), [output, setOutput] = useState(""), [aiError, setAiError] = useState(""), [generating, setGenerating] = useState(false), [copied, setCopied] = useState(false);
   const [tone, setTone] = useState<Tone>("professional");
   const [taskText, setTaskText] = useState(""), [tasks, setTasks] = useState<Task[]>([]);
   useEffect(() => {
@@ -55,7 +43,23 @@ export default function DashboardPage() {
   const name = useMemo(() => getName(user), [user]);
   const saveTasks = (next: Task[]) => { setTasks(next); window.localStorage.setItem("synqo-tasks", JSON.stringify(next)); };
   const addTask = () => { if (!taskText.trim()) return; saveTasks([{ id: Date.now(), title: taskText.trim(), done: false }, ...tasks]); setTaskText(""); };
-  const generate = () => { if (!input.trim()) return; setGenerating(true); setOutput(""); window.setTimeout(() => { setOutput(createOutput(activeTool, input, tone)); setGenerating(false); }, 650); };
+  const generate = async () => {
+    if (!input.trim() || !user) return;
+    setGenerating(true); setOutput(""); setAiError("");
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch("/api/ai", {
+        method: "POST",
+        headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
+        body: JSON.stringify({ tool: activeTool, tone, input: input.trim() }),
+      });
+      const data = (await response.json()) as { output?: string; error?: string };
+      if (!response.ok || !data.output) throw new Error(data.error || "AI could not complete this request.");
+      setOutput(data.output);
+    } catch (error) {
+      setAiError(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally { setGenerating(false); }
+  };
   const logout = async () => { await signOut(auth); router.replace("/login"); };
   if (loading) return <main className={styles.loading}><Loader2 className={styles.spin}/><p>Preparing your AI Employee…</p></main>;
   return <main className={styles.shell}>
@@ -67,13 +71,13 @@ export default function DashboardPage() {
     </aside>
     {menuOpen && <button className={styles.overlay} onClick={()=>setMenuOpen(false)} aria-label="Close menu"/>}
     <section className={styles.content}>
-      <header className={styles.topbar}><button className={styles.menu} onClick={()=>setMenuOpen(true)} aria-label="Open menu"><Menu/></button><div><span>Synqo AI Employee</span><h1>Good to see you, {name}</h1></div><div className={styles.live}><i/>MVP live</div></header>
+      <header className={styles.topbar}><button className={styles.menu} onClick={()=>setMenuOpen(true)} aria-label="Open menu"><Menu/></button><div><span>Synqo AI Employee</span><h1>Good to see you, {name}</h1></div><div className={styles.live}><i/>AI online</div></header>
       <div className={styles.main}>
         <section className={styles.intro}><div><span className={styles.eyebrow}><Sparkles/>YOUR DIGITAL TEAMMATE</span><h2>What can we get done today?</h2><p>Create customer replies, emails, appointments, quote notes and social content—then organize every next action.</p></div><div className={styles.metrics}><article><strong>{tools.length}</strong><span>AI tools</span></article><article><strong>{tasks.length}</strong><span>Tasks</span></article><article><strong>{tasks.filter(t=>t.done).length}</strong><span>Completed</span></article></div></section>
         <section className={styles.workspace} id="assistant">
-          <div className={styles.toolRail}><div className={styles.sectionTitle}><span>AI TOOLS</span><h3>Choose a job</h3></div>{tools.map(({id,label,description,icon:Icon})=><button key={id} className={activeTool===id?styles.toolActive:""} onClick={()=>{setActiveTool(id);setOutput("");}}><span className={styles.toolIcon}><Icon/></span><span><strong>{label}</strong><small>{description}</small></span></button>)}</div>
+          <div className={styles.toolRail}><div className={styles.sectionTitle}><span>AI TOOLS</span><h3>Choose a job</h3></div>{tools.map(({id,label,description,icon:Icon})=><button key={id} className={activeTool===id?styles.toolActive:""} onClick={()=>{setActiveTool(id);setOutput("");setAiError("");}}><span className={styles.toolIcon}><Icon/></span><span><strong>{label}</strong><small>{description}</small></span></button>)}</div>
           <div className={styles.composer}><div className={styles.composerHead}><div><span>AI WORKSPACE</span><h3>{prompts[activeTool].title}</h3></div><Bot/></div><textarea value={input} onChange={e=>setInput(e.target.value)} placeholder={prompts[activeTool].placeholder}/><div className={styles.composerActions}><div className={styles.toneControl}><span>Tone</span><select value={tone} onChange={e=>setTone(e.target.value as Tone)} aria-label="Writing tone"><option value="professional">Professional</option><option value="friendly">Friendly</option><option value="concise">Concise</option></select></div><button onClick={generate} disabled={!input.trim()||generating}>{generating?<Loader2 className={styles.spin}/>:<Send/>}{generating?"Working…":prompts[activeTool].action}</button></div>
-            <div className={`${styles.result} ${output?styles.resultReady:""}`}>{output?<><div className={styles.resultHead}><span><Sparkles/>Synqo result</span><button onClick={()=>{navigator.clipboard.writeText(output);setCopied(true);window.setTimeout(()=>setCopied(false),1500);}}>{copied?<Check/>:<Clipboard/>}{copied?"Copied":"Copy"}</button></div><pre>{output}</pre></>:<div className={styles.emptyResult}><Bot/><strong>Your result will appear here</strong><span>Add the details above and let your AI Employee prepare the first draft.</span></div>}</div>
+            <div className={`${styles.result} ${output?styles.resultReady:""} ${aiError?styles.resultError:""}`}>{output?<><div className={styles.resultHead}><span><Sparkles/>Synqo AI result</span><button onClick={()=>{navigator.clipboard.writeText(output);setCopied(true);window.setTimeout(()=>setCopied(false),1500);}}>{copied?<Check/>:<Clipboard/>}{copied?"Copied":"Copy"}</button></div><pre>{output}</pre></>:aiError?<div className={styles.errorResult}><Bot/><strong>Couldn’t generate this draft</strong><span>{aiError}</span><button onClick={generate}>Try again</button></div>:<div className={styles.emptyResult}><Bot/><strong>Your AI result will appear here</strong><span>Add the details above and let your AI Employee prepare a custom first draft.</span></div>}</div>
           </div>
         </section>
         <section className={styles.tasks} id="tasks"><div className={styles.sectionTitle}><span>NEXT ACTIONS</span><h3>Business task list</h3></div><div className={styles.taskInput}><input value={taskText} onChange={e=>setTaskText(e.target.value)} onKeyDown={e=>e.key==="Enter"&&addTask()} placeholder="Add a follow-up or business task…"/><button onClick={addTask}><Plus/>Add task</button></div><div className={styles.taskList}>{tasks.length===0?<p className={styles.noTasks}>No tasks yet. Add your first next action above.</p>:tasks.map(task=><article key={task.id} className={task.done?styles.taskDone:""}><button className={styles.check} onClick={()=>saveTasks(tasks.map(item=>item.id===task.id?{...item,done:!item.done}:item))}>{task.done&&<Check/>}</button><span>{task.title}</span><button className={styles.delete} onClick={()=>saveTasks(tasks.filter(item=>item.id!==task.id))} aria-label="Delete task"><Trash2/></button></article>)}</div></section>
