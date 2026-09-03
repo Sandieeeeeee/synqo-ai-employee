@@ -1,0 +1,42 @@
+{
+  "name": "synqo-ai-employee-desktop",
+  "version": "1.0.0",
+  "description": "Synqo AI Employee desktop workspace",
+  "author": "Synqo AI",
+  "license": "UNLICENSED",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable"
+  },
+  "devDependencies": {
+    "electron": "^44.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.synqoai.employee",
+    "productName": "Synqo AI Employee",
+    "artifactName": "Synqo-AI-Employee-${version}-${arch}.${ext}",
+    "asar": true,
+    "files": [
+      "main.js",
+      "splash.html"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Synqo AI Employee"
+    }
+  }
+}

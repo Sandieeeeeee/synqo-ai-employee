@@ -23,6 +23,12 @@
 # misc
 .DS_Store
 *.pem
+*.jks
+*.keystore
+native/windows/node_modules/
+native/windows/dist/
+native/android/.gradle/
+native/android/app/build/
 
 # debug
 npm-debug.log*
