@@ -1,0 +1,317 @@
+.scene {
+  position: relative;
+  min-height: 610px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  perspective: 1400px;
+  touch-action: pan-y;
+}
+
+.ambient {
+  position: absolute;
+  inset: 6% 0 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(24, 153, 255, 0.26), transparent 28%),
+    radial-gradient(circle at 50% 55%, rgba(113, 71, 255, 0.18), transparent 48%);
+  filter: blur(24px);
+}
+
+.gridFloor {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 1%;
+  height: 47%;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(78, 163, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78, 163, 255, 0.18) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, transparent, #000 42%, transparent);
+  transform: rotateX(68deg) translateY(28%);
+  transform-origin: bottom;
+}
+
+.stage {
+  position: relative;
+  width: min(100%, 640px);
+  height: 560px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hud {
+  position: absolute;
+  inset: 22px 22px auto;
+  z-index: 8;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(110, 187, 255, 0.18);
+  color: rgba(173, 211, 248, 0.54);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.live {
+  color: #79f8ca;
+}
+
+.live i {
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #52f3b8;
+  box-shadow: 0 0 12px #52f3b8;
+}
+
+.coreWrap {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  z-index: 4;
+  width: 330px;
+  height: 330px;
+  transform: translate(-50%, -50%) translateZ(44px);
+  transform-style: preserve-3d;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(71, 171, 255, 0.46);
+  border-radius: 50%;
+  box-shadow: inset 0 0 30px rgba(45, 139, 255, 0.08), 0 0 24px rgba(25, 130, 255, 0.09);
+}
+
+.ring::before,
+.ring::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #6bc7ff;
+  box-shadow: 0 0 16px #148cff;
+}
+
+.ring::before { left: 18%; top: 6%; }
+.ring::after { right: 8%; bottom: 24%; }
+
+.ringOne { animation: orbitOne 13s linear infinite; }
+.ringTwo { inset: 27px; border-style: dashed; animation: orbitTwo 10s linear infinite; }
+.ringThree { inset: 56px; opacity: 0.78; animation: orbitThree 8s linear infinite; }
+
+.orbHalo {
+  position: absolute;
+  inset: 86px;
+  border-radius: 50%;
+  background: rgba(34, 139, 255, 0.26);
+  box-shadow: 0 0 75px 32px rgba(16, 111, 255, 0.25), 0 0 150px rgba(105, 53, 255, 0.25);
+  filter: blur(12px);
+}
+
+.orb {
+  position: absolute;
+  inset: 105px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(164, 218, 255, 0.8);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, #bfe9ff 0 4%, #39afff 17%, transparent 36%),
+    radial-gradient(circle at 65% 70%, #795cff, #0d5ec7 42%, #031329 72%);
+  box-shadow:
+    inset -18px -20px 36px rgba(2, 5, 18, 0.74),
+    inset 12px 10px 28px rgba(164, 232, 255, 0.4),
+    0 0 30px rgba(77, 174, 255, 0.78);
+  color: white;
+}
+
+.orbMesh {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.23;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 13px 13px;
+  transform: rotate(18deg);
+}
+
+.orb svg { position: relative; filter: drop-shadow(0 0 10px #fff); }
+
+.node {
+  position: absolute;
+  z-index: 4;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #b9e7ff;
+  border-radius: 50%;
+  background: #219cff;
+  box-shadow: 0 0 15px 4px rgba(33, 156, 255, 0.7);
+}
+
+.nodeOne { left: 20px; top: 164px; }
+.nodeTwo { right: 44px; top: 38px; }
+.nodeThree { right: 16px; bottom: 102px; }
+
+.signalCard,
+.commandPanel {
+  border: 1px solid rgba(89, 177, 255, 0.25);
+  background: linear-gradient(145deg, rgba(11, 27, 50, 0.88), rgba(3, 10, 22, 0.92));
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.42), inset 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(22px);
+}
+
+.signalCard {
+  position: absolute;
+  z-index: 7;
+  min-width: 178px;
+  padding: 12px 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;
+  transform: translateZ(86px);
+}
+
+.signalCard > span:nth-child(2) { flex: 1; }
+.signalCard small,
+.signalCard strong { display: block; }
+.signalCard small { color: #728ba5; font-size: 8px; }
+.signalCard strong { margin-top: 4px; color: #eaf6ff; font-size: 10px; }
+.signalCard b { color: #67efbf; font-size: 8px; letter-spacing: 0.08em; }
+
+.cardIcon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(33, 156, 255, 0.24), rgba(94, 66, 255, 0.15));
+  color: #6bc7ff;
+  box-shadow: inset 0 0 18px rgba(59, 171, 255, 0.12);
+}
+
+.inboxCard { left: 0; top: 118px; }
+.leadsCard { right: -4px; top: 164px; }
+.bookingCard { left: 28px; bottom: 80px; }
+
+.commandPanel {
+  position: absolute;
+  right: 16px;
+  bottom: 37px;
+  z-index: 6;
+  width: 250px;
+  padding: 14px;
+  border-radius: 16px;
+  transform: translateZ(38px) rotateY(-4deg);
+}
+
+.commandTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #b9d8f6;
+  font-size: 8px;
+}
+
+.commandTop span { display: inline-flex; align-items: center; gap: 6px; }
+.commandTop small { color: #6cf3c2; font-size: 7px; letter-spacing: 0.12em; }
+.commandCopy { margin-top: 14px; }
+.commandCopy span,
+.commandCopy strong { display: block; }
+.commandCopy span { color: #67819b; font-size: 8px; }
+.commandCopy strong { margin-top: 4px; font-size: 11px; }
+
+.signalBars {
+  height: 48px;
+  margin-top: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.signalBars i {
+  flex: 1;
+  min-height: 4px;
+  border-radius: 4px 4px 1px 1px;
+  background: linear-gradient(180deg, #63d5ff, #176de2 68%, #6644ff);
+  box-shadow: 0 0 8px rgba(51, 164, 255, 0.3);
+}
+
+.coreLabel {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  z-index: 5;
+  width: 150px;
+  text-align: center;
+  transform: translate(-50%, 78px) translateZ(94px);
+}
+
+.coreLabel span,
+.coreLabel strong { display: block; }
+.coreLabel span { color: #9ddaff; font-size: 8px; font-weight: 900; letter-spacing: 0.22em; }
+.coreLabel strong { margin-top: 5px; color: rgba(205, 226, 247, 0.68); font-size: 6px; letter-spacing: 0.1em; }
+
+@keyframes orbitOne {
+  to { transform: rotateZ(360deg) rotateX(66deg); }
+}
+
+@keyframes orbitTwo {
+  from { transform: rotateY(62deg) rotateZ(0deg); }
+  to { transform: rotateY(62deg) rotateZ(-360deg); }
+}
+
+@keyframes orbitThree {
+  from { transform: rotateX(58deg) rotateY(40deg) rotateZ(0deg); }
+  to { transform: rotateX(58deg) rotateY(40deg) rotateZ(360deg); }
+}
+
+@media (max-width: 980px) {
+  .scene { min-height: 580px; }
+}
+
+@media (max-width: 680px) {
+  .scene { min-height: 485px; margin-top: 18px; }
+  .stage { width: 100%; height: 470px; }
+  .coreWrap { width: 260px; height: 260px; top: 45%; }
+  .ringTwo { inset: 22px; }
+  .ringThree { inset: 46px; }
+  .orbHalo { inset: 70px; }
+  .orb { inset: 83px; }
+  .orb svg { width: 24px; }
+  .hud { inset: 10px 8px auto; }
+  .signalCard { min-width: 152px; padding: 10px; }
+  .signalCard strong { font-size: 9px; }
+  .inboxCard { left: -2px; top: 88px; }
+  .leadsCard { right: -2px; top: 130px; }
+  .bookingCard { display: none; }
+  .commandPanel { right: 7px; bottom: 20px; width: 218px; }
+  .coreLabel { top: 45%; transform: translate(-50%, 62px) translateZ(94px); }
+  .nodeOne { left: 15px; top: 128px; }
+  .nodeTwo { right: 34px; top: 29px; }
+  .nodeThree { right: 12px; bottom: 80px; }
+}
+
+@media (max-width: 390px) {
+  .signalCard { min-width: 142px; }
+  .cardIcon { width: 30px; height: 30px; }
+  .leadsCard { top: 144px; }
+  .commandPanel { width: 205px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ringOne,
+  .ringTwo,
+  .ringThree { animation: none; }
+}

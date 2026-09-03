@@ -3,15 +3,12 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import {
   ArrowRight,
-  Bot,
   CalendarCheck,
-  Check,
   ChevronRight,
   Mail,
   Menu,
   MessageSquare,
   Sparkles,
-  TrendingUp,
   UserPlus,
   X,
 } from "lucide-react";
@@ -21,6 +18,7 @@ import Link from "next/link";
 import InteractiveBackground from "@/components/InteractiveBackground";
 import LoadingScreen from "@/components/LoadingScreen";
 import BackToTop from "@/components/BackToTop";
+import NeuralCore3D from "@/components/NeuralCore3D";
 
 const features = [
   {
@@ -295,197 +293,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Dashboard Preview */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 70,
-              scale: 0.94,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.9,
-              delay: 0.25,
-              ease: "easeOut",
-            }}
-            className="hero-visual"
-            aria-label="Synqo AI Employee dashboard preview"
-          >
-            <div className="visual-orbit orbit-one" />
-            <div className="visual-orbit orbit-two" />
-
-            <motion.div
-              animate={{
-                y: [0, -7, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="dashboard-card"
-            >
-              <div className="dashboard-topbar">
-                <div className="window-dots">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-
-                <span className="dashboard-label">SYNQO AI EMPLOYEE</span>
-              </div>
-
-              <div className="dashboard-body">
-                <aside className="dashboard-sidebar">
-                  <div className="sidebar-logo">S</div>
-
-                  <span className="sidebar-item active" />
-                  <span className="sidebar-item" />
-                  <span className="sidebar-item" />
-                  <span className="sidebar-item" />
-                </aside>
-
-                <div className="dashboard-main">
-                  <div className="dashboard-heading">
-                    <div>
-                      <span>AI Employee Dashboard</span>
-
-                      <h3>Good morning</h3>
-                    </div>
-
-                    <motion.div
-                      animate={{
-                        boxShadow: [
-                          "0 0 0 rgba(20,140,255,0)",
-                          "0 0 24px rgba(20,140,255,.45)",
-                          "0 0 0 rgba(20,140,255,0)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                      }}
-                      className="mini-avatar"
-                    >
-                      AI
-                    </motion.div>
-                  </div>
-
-                  <div className="stat-grid">
-                    <motion.div
-                      whileHover={{
-                        y: -5,
-                        scale: 1.02,
-                      }}
-                      className="stat-card"
-                    >
-                      <span>New leads</span>
-                      <strong>24</strong>
-                      <small>Today</small>
-                    </motion.div>
-
-                    <motion.div
-                      whileHover={{
-                        y: -5,
-                        scale: 1.02,
-                      }}
-                      className="stat-card"
-                    >
-                      <span>Appointments</span>
-                      <strong>7</strong>
-                      <small>Booked</small>
-                    </motion.div>
-
-                    <motion.div
-                      whileHover={{
-                        y: -5,
-                        scale: 1.02,
-                      }}
-                      className="stat-card"
-                    >
-                      <span>Follow-ups</span>
-                      <strong>18</strong>
-                      <small>Automated</small>
-                    </motion.div>
-                  </div>
-
-                  <div className="chart-card">
-                    <div className="chart-header">
-                      <span>Customer activity</span>
-
-                      <small>Demo dashboard</small>
-                    </div>
-
-                    <div className="chart-bars">
-                      {[42, 58, 48, 68, 62, 80, 74, 92, 86, 100].map(
-                        (height, index) => (
-                          <motion.span
-                            key={index}
-                            initial={{
-                              height: 0,
-                            }}
-                            animate={{
-                              height: `${height}%`,
-                            }}
-                            transition={{
-                              duration: 0.7,
-                              delay: 0.7 + index * 0.07,
-                              ease: "easeOut",
-                            }}
-                          />
-                        ),
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="activity-row">
-                    <span className="activity-icon">
-                      <Sparkles size={16} />
-                    </span>
-
-                    <div>
-                      <strong>Follow-up sent automatically</strong>
-
-                      <small>New customer enquiry</small>
-                    </div>
-
-                    <span className="complete-pill">
-                      <Check size={10} />
-                      Completed
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="floating-card floating-one">
-              <span className="floating-icon">
-                <Bot size={17} />
-              </span>
-
-              <div>
-                <strong>AI Employee</strong>
-
-                <small>Online and ready</small>
-              </div>
-            </div>
-
-            <div className="floating-card floating-two">
-              <span className="growth-arrow">
-                <TrendingUp size={17} />
-              </span>
-
-              <div>
-                <strong>Always On</strong>
-
-                <small>Ready for enquiries</small>
-              </div>
-            </div>
-          </motion.div>
+          <NeuralCore3D />
         </section>
 
         {/* Trust strip */}
