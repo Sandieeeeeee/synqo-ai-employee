@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-type Tool = "reply" | "email" | "followup" | "appointment" | "summary" | "quote" | "social" | "dailyplan" | "study" | "personalnotes";
+type Tool = "reply" | "email" | "followup" | "appointment" | "summary" | "quote" | "social" | "community" | "dailyplan" | "study" | "personalnotes";
 type Tone = "professional" | "friendly" | "concise";
 
 const TOOL_INSTRUCTIONS: Record<Tool, string> = {
@@ -11,6 +11,7 @@ const TOOL_INSTRUCTIONS: Record<Tool, string> = {
   summary: "Summarize the notes into key points, decisions, and action items. Do not invent missing facts.",
   quote: "Write a polished quote or estimate note. Preserve every supplied price, date, and condition exactly.",
   social: "Write an engaging business social-media caption with a natural call to action and no more than five relevant hashtags.",
+  community: "Write one ready-to-post reply to the supplied social-media comment or direct message. Match the brand context and the customer's language, sound human, do not add hashtags, and do not make promises or give regulated advice. For complaints, legal issues, threats, payment disputes, or sensitive personal matters, write a calm acknowledgement that moves the conversation to a human instead of trying to resolve it.",
   dailyplan: "Turn the user's tasks, deadlines and available time into a realistic prioritized daily plan. Include time blocks, short breaks and the three most important outcomes. Do not invent commitments.",
   study: "Act as a practical study assistant. Explain or summarize the supplied material clearly, then provide key takeaways and five useful review questions.",
   personalnotes: "Organize the supplied personal notes into a concise summary, decisions, deadlines and a clear action list. Do not invent missing information.",

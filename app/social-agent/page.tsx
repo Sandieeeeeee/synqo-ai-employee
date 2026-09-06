@@ -7,8 +7,8 @@ import {
   ArrowRight,
   BarChart3,
   Bot,
+  Camera,
   Check,
-  Instagram,
   MessageCircle,
   MessagesSquare,
   ShieldCheck,
@@ -51,12 +51,12 @@ export default function SocialAgentPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <div className="rounded-2xl border border-violet-400/25 bg-violet-500/10 px-5 py-4 shadow-[0_0_45px_rgba(139,92,246,.12)]"><div className="text-sm font-semibold text-violet-200">5 Community Messages Free</div><div className="mt-1 text-xs text-slate-400">No credit card required</div></div>
               <div className="rounded-2xl border border-blue-400/20 bg-blue-500/10 px-5 py-4">
-                <div className="flex items-center gap-2 text-sm font-semibold text-blue-100"><Instagram size={16} /> Instagram</div>
+                <div className="flex items-center gap-2 text-sm font-semibold text-blue-100"><Camera size={16} /> Instagram</div>
                 <div className="mt-1 flex items-center gap-2 text-xs text-slate-400"><span className="grid h-4 w-4 place-items-center rounded bg-blue-500 text-[9px] font-bold text-white">f</span> Facebook</div>
               </div>
             </div>
 
-            <div className="hero-actions mt-8"><Link className="primary-button" href="/signup">Start Free <ArrowRight size={18} /></Link><a className="secondary-button" href="#preview">See Dashboard</a></div>
+            <div className="hero-actions mt-8"><Link className="primary-button" href="/social-agent/app">Open Social Agent <ArrowRight size={18} /></Link><a className="secondary-button" href="#preview">See Dashboard</a></div>
             <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400">{["Connect in minutes", "AI replies in your tone", "Approval mode included"].map((item)=><span key={item} className="flex items-center gap-2"><Check size={15} className="text-cyan-300" /> {item}</span>)}</div>
           </motion.div>
 
@@ -73,7 +73,7 @@ export default function SocialAgentPage() {
 
         <section className="pt-28"><div className="section-heading"><div><span className="section-label">BUILT FOR YOUR COMMUNITY</span><h2>One place for comments, DMs and AI replies.</h2></div><p>Start small with five free community messages, test the experience, then scale when your audience grows.</p></div><div className="products-page-grid mt-12">{features.map((feature,index)=>{const Icon=feature.icon;return <motion.article key={feature.title} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.5,delay:index*.07}} whileHover={{y:-7}} className="product-detail-card"><div className="product-detail-icon"><Icon size={24}/></div><h2 className="mt-5">{feature.title}</h2><p>{feature.text}</p></motion.article>})}</div></section>
 
-        <motion.section initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="cta-section mt-28 !w-full"><div className="cta-glow"/><span className="section-label">FREE BETA</span><h2>Try your first 5 community messages free.</h2><p>No credit card. Connect your social accounts, choose your tone and see how Synqo Social Agent can help manage your community.</p><div className="hero-actions"><Link className="primary-button" href="/signup">Get Started Free <ArrowRight size={18}/></Link><Link className="secondary-button" href="/contact">Contact Synqo AI</Link></div></motion.section>
+        <motion.section initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} className="cta-section mt-28 !w-full"><div className="cta-glow"/><span className="section-label">FREE BETA</span><h2>Try your first 5 community messages free.</h2><p>No credit card. Add a comment or DM, choose your brand tone and let Synqo prepare the reply. Meta account automation unlocks after account approval.</p><div className="hero-actions"><Link className="primary-button" href="/social-agent/app">Open Social Agent <ArrowRight size={18}/></Link><Link className="secondary-button" href="/contact">Contact Synqo AI</Link></div></motion.section>
       </section>
     </main>
   );

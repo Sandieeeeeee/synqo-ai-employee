@@ -45,6 +45,24 @@ export default function PrivacyPage() {
           users, and provide customer support.
         </p>
 
+        <h2>Connected Social Accounts</h2>
+
+        <p>
+          If you choose to connect an Instagram or Facebook business account,
+          Synqo AI may process account identifiers, comments, direct messages
+          and access tokens only to provide the Social Agent features you
+          authorize. We do not sell connected-account data. You can disconnect
+          an account or request deletion at any time.
+        </p>
+
+        <h2>Data Deletion</h2>
+
+        <p>
+          You can review our <Link href="/data-deletion">data deletion instructions</Link>
+          {" "}or contact us to request removal of your Synqo AI account and
+          connected social data.
+        </p>
+
         <h2>Security</h2>
 
         <p>
