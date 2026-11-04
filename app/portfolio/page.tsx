@@ -47,18 +47,19 @@ export default function PortfolioPage() {
           <div className="products-page-grid" style={{marginTop:42}}>
             {projects.map((project)=>{
               const Icon=project.icon;
-              return <article key={project.number} className="product-detail-card">
+              return <article key={project.number} className="product-detail-card portfolio-demo-card">
                 <div className="product-detail-top"><div className="product-detail-icon"><Icon size={24}/></div><span className="product-status">{project.category}</span></div>
                 <span className="product-detail-number">{project.number}</span>
                 <h2>{project.title}</h2>
                 <p>{project.description}</p>
                 <div style={{display:"flex",flexWrap:"wrap",gap:8,marginTop:18}}>{project.features.map(f=><span key={f} style={{border:"1px solid rgba(91,165,255,.25)",borderRadius:99,padding:"7px 10px",fontSize:12,color:"#b8d9fa"}}>{f}</span>)}</div>
                 <p style={{marginTop:20,fontSize:12,color:"#87a8c7"}}>{project.status}</p>
-                {project.href ? <Link href={project.href}>View Live Demo <ArrowRight size={16}/></Link> : <Link href="/contact">Request something similar <ArrowRight size={16}/></Link>}
+                <div className="portfolio-demo-action">{project.href ? <Link href={project.href} className="portfolio-demo-link"><span>Explore Demo</span><ArrowRight size={16}/></Link> : <Link href="/contact" className="portfolio-demo-link"><span>Enquire About This</span><ArrowRight size={16}/></Link>}</div>
               </article>;
             })}
           </div>
         </section>
+        <style jsx global>{` .portfolio-demo-card { display:flex; flex-direction:column; padding-bottom:26px; min-height:390px; } .portfolio-demo-action { position:relative; z-index:5; margin-top:auto; padding-top:22px; } .portfolio-demo-card .portfolio-demo-action a.portfolio-demo-link { position:static !important; left:auto !important; bottom:auto !important; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:13px 17px; background:linear-gradient(115deg,#1671db,#3951bb); color:#fff; border:1px solid #77b8ff70; border-radius:11px; box-shadow:0 9px 25px #0b6fe62e; width:max-content; max-width:100%; font-size:13px; line-height:1.2; white-space:nowrap; text-decoration:none; } .portfolio-demo-card .portfolio-demo-action a.portfolio-demo-link:hover { background:linear-gradient(115deg,#238cff,#6059d9); } @media(max-width:680px){.portfolio-demo-card{min-height:370px}} `}</style>
         <section className="cta-section" style={{width:"100%",marginTop:90,marginBottom:30}}>
           <div className="cta-glow"/>
           <span className="section-label"><MessageSquare size={14} style={{display:"inline",marginRight:8}}/>LET'S BUILD TOGETHER</span>
