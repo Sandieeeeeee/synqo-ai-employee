@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 const projects = [
   { number:"01", icon:UtensilsCrossed, category:"Website concept", title:"Restaurant & Café Website", description:"A sample restaurant experience featuring a menu, photo gallery, location details and reservation enquiry flow.", features:["Responsive design","Menu & gallery","Reservation enquiry"], status:"Live interactive demo", href:"/demo/restaurant" },
-  { number:"02", icon:Building2, category:"Website concept", title:"Real Estate Website", description:"A property showcase concept with listing cards, agent information and a buyer enquiry journey.", features:["Property listings","Agent profile","Lead enquiry"], status:"Concept — demo in development", href:"" },
-  { number:"03", icon:CalendarDays, category:"Website concept", title:"Salon & Barber Booking", description:"A modern service-business concept for showcasing treatments, prices and booking requests.", features:["Service catalogue","Pricing","Booking enquiry"], status:"Concept — demo in development", href:"" },
-  { number:"04", icon:Bot, category:"AI prototype", title:"Customer Support Assistant", description:"An illustrative assistant workflow for frequently asked questions, customer enquiries and lead capture.", features:["FAQ workflow","Lead capture","Human handoff concept"], status:"Concept — demo in development", href:"" },
+  { number:"02", icon:Building2, category:"Website concept", title:"Real Estate Website", description:"A property showcase concept with listing cards, agent information and a buyer enquiry journey.", features:["Property listings","Agent profile","Lead enquiry"], status:"Live interactive demo", href:"/demo/real-estate" },
+  { number:"03", icon:CalendarDays, category:"Website concept", title:"Salon & Barber Booking", description:"A modern service-business concept for showcasing treatments, prices and booking requests.", features:["Service catalogue","Pricing","Booking enquiry"], status:"Live interactive demo", href:"/demo/salon" },
+  { number:"04", icon:Bot, category:"AI prototype", title:"Customer Support Assistant", description:"An illustrative assistant workflow for frequently asked questions, customer enquiries and lead capture.", features:["FAQ workflow","Lead capture","Human handoff concept"], status:"Live interactive demo", href:"/demo/assistant" },
 ];
 
 export default function PortfolioPage() {
@@ -28,7 +28,7 @@ export default function PortfolioPage() {
         <div className="products-page-heading">
           <span className="section-label">SYNQO AI STUDIO / PORTFOLIO</span>
           <h1>Ideas built for <br/><span>real business needs.</span></h1>
-          <p>Explore the kinds of websites and intelligent workflows we can design for growing businesses. These are proposed demonstration projects, not completed client engagements.</p>
+          <p>Explore the kinds of websites and intelligent workflows we can design for growing businesses. These are fictional portfolio demonstrations, not completed client engagements.</p>
           <div className="hero-actions">
             <Link className="primary-button" href="/contact">Discuss Your Project <ArrowRight size={18}/></Link>
             <Link className="secondary-button" href="/services">Explore Services</Link>
@@ -37,7 +37,7 @@ export default function PortfolioPage() {
         <div className="about-card" style={{marginTop:42,padding:"30px 34px",textAlign:"left"}}>
           <span className="section-label"><Sparkles size={14} style={{display:"inline",marginRight:8}}/>TRANSPARENT BY DESIGN</span>
           <h2 style={{fontSize:"clamp(22px,3vw,34px)"}}>Sample concepts, clearly labelled.</h2>
-          <p style={{marginTop:12}}>Live demo links will be added as projects are built and tested. No sample below is presented as paid client work.</p>
+          <p style={{marginTop:12}}>Explore four working demonstration pages. All brands, listings, prices and sample interactions are fictional; none are presented as paid client work.</p>
         </div>
         <section style={{paddingTop:78}}>
           <div className="section-heading">
