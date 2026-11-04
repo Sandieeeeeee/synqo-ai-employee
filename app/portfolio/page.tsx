@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 const projects = [
-  { number:"01", icon:UtensilsCrossed, category:"Website concept", title:"Restaurant & Café Website", description:"A sample restaurant experience featuring a menu, photo gallery, location details and reservation enquiry flow.", features:["Responsive design","Menu & gallery","Reservation enquiry"], status:"Concept — demo in development" },
-  { number:"02", icon:Building2, category:"Website concept", title:"Real Estate Website", description:"A property showcase concept with listing cards, agent information and a buyer enquiry journey.", features:["Property listings","Agent profile","Lead enquiry"], status:"Concept — demo in development" },
-  { number:"03", icon:CalendarDays, category:"Website concept", title:"Salon & Barber Booking", description:"A modern service-business concept for showcasing treatments, prices and booking requests.", features:["Service catalogue","Pricing","Booking enquiry"], status:"Concept — demo in development" },
-  { number:"04", icon:Bot, category:"AI prototype", title:"Customer Support Assistant", description:"An illustrative assistant workflow for frequently asked questions, customer enquiries and lead capture.", features:["FAQ workflow","Lead capture","Human handoff concept"], status:"Concept — demo in development" },
+  { number:"01", icon:UtensilsCrossed, category:"Website concept", title:"Restaurant & Café Website", description:"A sample restaurant experience featuring a menu, photo gallery, location details and reservation enquiry flow.", features:["Responsive design","Menu & gallery","Reservation enquiry"], status:"Live interactive demo", href:"/demo/restaurant" },
+  { number:"02", icon:Building2, category:"Website concept", title:"Real Estate Website", description:"A property showcase concept with listing cards, agent information and a buyer enquiry journey.", features:["Property listings","Agent profile","Lead enquiry"], status:"Concept — demo in development", href:"" },
+  { number:"03", icon:CalendarDays, category:"Website concept", title:"Salon & Barber Booking", description:"A modern service-business concept for showcasing treatments, prices and booking requests.", features:["Service catalogue","Pricing","Booking enquiry"], status:"Concept — demo in development", href:"" },
+  { number:"04", icon:Bot, category:"AI prototype", title:"Customer Support Assistant", description:"An illustrative assistant workflow for frequently asked questions, customer enquiries and lead capture.", features:["FAQ workflow","Lead capture","Human handoff concept"], status:"Concept — demo in development", href:"" },
 ];
 
 export default function PortfolioPage() {
@@ -54,7 +54,7 @@ export default function PortfolioPage() {
                 <p>{project.description}</p>
                 <div style={{display:"flex",flexWrap:"wrap",gap:8,marginTop:18}}>{project.features.map(f=><span key={f} style={{border:"1px solid rgba(91,165,255,.25)",borderRadius:99,padding:"7px 10px",fontSize:12,color:"#b8d9fa"}}>{f}</span>)}</div>
                 <p style={{marginTop:20,fontSize:12,color:"#87a8c7"}}>{project.status}</p>
-                <Link href="/contact">Request something similar <ArrowRight size={16}/></Link>
+                {project.href ? <Link href={project.href}>View Live Demo <ArrowRight size={16}/></Link> : <Link href="/contact">Request something similar <ArrowRight size={16}/></Link>}
               </article>;
             })}
           </div>
