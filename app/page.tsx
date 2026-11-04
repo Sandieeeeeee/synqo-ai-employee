@@ -157,6 +157,8 @@ export default function Home() {
 
             <Link href="/services">Services</Link>
 
+            <Link href="/portfolio">Portfolio</Link>
+
             <Link href="/pricing">Pricing</Link>
 
             <Link href="/vision">Vision</Link>
@@ -571,6 +573,8 @@ export default function Home() {
             <Link href="/life-assistant">Life Assistant</Link>
 
             <Link href="/services">Services</Link>
+
+            <Link href="/portfolio">Portfolio</Link>
 
             <Link href="/pricing">Pricing</Link>
 
