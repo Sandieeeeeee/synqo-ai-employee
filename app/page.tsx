@@ -155,6 +155,8 @@ export default function Home() {
 
             <a href="#solutions">Solutions</a>
 
+            <Link href="/ai-hub">AI Hub</Link>
+
             <Link href="/services">Services</Link>
 
             <Link href="/portfolio">Portfolio</Link>
@@ -213,6 +215,8 @@ export default function Home() {
                   <ChevronRight size={16} className="text-blue-400" />
                 </a>
               ))}
+
+              <Link href="/ai-hub" onClick={() => setMenuOpen(false)} className="flex items-center justify-between rounded-xl px-4 py-4 text-sm font-semibold text-slate-200 hover:bg-blue-500/10">AI Hub <ChevronRight size={16} className="text-blue-400" /></Link>
 
               <Link
                 href="/services"
